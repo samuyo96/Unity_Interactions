@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23750356168675902}
   - component: {fileID: 456387977024848660}
   - component: {fileID: 2059252751761647945}
-  - component: {fileID: 2416921353708795883}
+  - component: {fileID: 6171646938581036863}
   m_Layer: 0
   m_Name: Bomb_Shot
   m_TagString: Untagged
@@ -137,7 +137,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.1
   m_Center: {x: 0, y: -0.02, z: 0}
---- !u!114 &2416921353708795883
+--- !u!114 &6171646938581036863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,6 +146,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1196744780447740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cce996c2bcecc246bd029a38f69c16e, type: 3}
+  m_Script: {fileID: 11500000, guid: d90466ac04bc2af4e805a3e8653b9cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToLive: 2
+  explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  explosionRadius: 5
+  explosionForce: 30
+  upwardModifier: 1

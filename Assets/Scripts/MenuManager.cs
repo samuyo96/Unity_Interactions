@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance { get; private set; }
+    public bool isMenuShowing = true;
+    public CanvasGroup menuCanvasGroup;
 
     private void Awake()
     {
@@ -18,8 +20,22 @@ public class MenuManager : MonoBehaviour
 
     public void LoadLevel (int sceneIndex)
     {
+        if (SceneManager.GetActiveScene().buildIndex == sceneIndex)
+        {
+            return;
+        }
         SceneManager.LoadScene(sceneIndex);
-        gameObject.SetActive(false);
+        menuCanvasGroup.alpha = 0;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+    }
+
+    public void ToggleMenu()
+    {
+        isMenuShowing = !isMenuShowing;
+        menuCanvasGroup.alpha = isMenuShowing ? 0 : 1;
+        Time.timeScale = isMenuShowing ? 1 : 0;
+        Cursor.lockState = isMenuShowing ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     public void QuitApplication()

@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
@@ -41,6 +41,7 @@ public class CannonController : MonoBehaviour
     {
         controls.Enable();
         controls.gameplay.fire.performed += ctx => Fire();
+        controls.gameplay.menu.performed += ctx => MenuManager.Instance.ToggleMenu();
     }
 
     private void OnDisable()
@@ -51,7 +52,6 @@ public class CannonController : MonoBehaviour
     private void Update()
     {
         move = controls.gameplay.move.ReadValue<Vector2>();
-        Debug.Log($"Move Input: {move}");
         Aim(move.y);
         RotateBody(move.x);
     }
@@ -80,6 +80,7 @@ public class CannonController : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.AddTorque(Random.insideUnitSphere.normalized * projectileForce, ForceMode.Impulse);
         rb.AddForce(spawnPoint.forward * projectileForce, ForceMode.Impulse);
         StartCoroutine(FireCooldown());
     }
